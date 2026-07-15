@@ -248,6 +248,9 @@ def readCamerasFromTransforms(path, transformsfile, depths_folder, white_backgro
 
             image_path = os.path.join(path, cam_name)
             image_name = Path(cam_name).stem
+            if not os.path.exists(image_path):
+                print(f"Skip missing image: {image_path}")
+                continue
             image = Image.open(image_path)
 
             im_data = np.array(image.convert("RGBA"))
